@@ -1,0 +1,33 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          fotobox
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     5
+# Default-Stop:      0 1 6
+# X-Start-After:	rmnologin
+# Short-Description: Kurze Beschreibung
+# Description:       Längere Beschreibung
+### END INIT INFO
+# Author: <name@domain.tld>
+PIDFILE=/var/run/fotobox.pid
+DAEMON_USER=pi
+DAEMON_NAME=fotobox
+DAEMON=/home/pi/fotobox/fotobox.py
+DIR=/home/pi/fotobox
+# Aktionen
+case "$1" in
+    start)
+        #su pi
+	#/home/pi/fotobox/fotobox.py &
+	start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --user $DAEMON_USER --chuid $DAEMON_USER --chdir $DIR --startas /bin/bash -- -c "exec $DAEMON > /home/pi/fotobox/fotobox.log 2>&1"
+        ;;
+    stop)
+        start-stop-daemon --stop --pidfile $PIDFILE --retry 10	
+        ;;
+    restart)
+        
+        ;;
+esac
+
+exit 0
