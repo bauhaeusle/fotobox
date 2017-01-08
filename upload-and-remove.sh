@@ -7,5 +7,5 @@
 echo "upload image $1"
 ../Dropbox-Uploader/dropbox_uploader.sh $1 $1
 echo "uploaded image $1"
-rm $1
+#rm $1
 echo "removed image $1"
